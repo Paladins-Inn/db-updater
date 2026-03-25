@@ -34,14 +34,25 @@
 
   <properties>
     <skipTests>false</skipTests>
+    <skip.jar>false</skip.jar>
+    <skip.javadoc>false</skip.javadoc>
+    <skip.source>false</skip.source>
+    <skip.site>false</skip.site>
+    <skip.owasp>true</skip.owasp>
+    <skip.coverage>true</skip.coverage>
+
+    <gpg.keyname>AF380360D648FC1D4BA7DBBA6A09445FE79CABD8</gpg.keyname>
 
     <main.basedir>${project.basedir}</main.basedir>
     <argLine/>
 
     <maven.compiler.parameters>true</maven.compiler.parameters>
+    <maven.compiler.source>25</maven.compiler.source>
+    <maven.compiler.target>25</maven.compiler.target>
     <maven.compiler.release>25</maven.compiler.release>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.inputEncoding>UTF-8</project.reporting.inputEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <spring-boot.version>4.0.4</spring-boot.version>
@@ -150,8 +161,33 @@
     </developer>
   </developers>
 
+  <scm>
+    <url>https://github.com/Paladins-Inn/db-updater</url>
+    <connection>scm:git:git://github.com/Paladins-Inn/db-updater.git</connection>
+    <developerConnection>scm:git:git@github.com:Paladins-Inn/db-updater.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <issueManagement>
+    <url>https://github.com/Paladins-Inn/db-updater/issues</url>
+    <system>GitHub Issues</system>
+  </issueManagement>
+
+  <distributionManagement>
+    <site>
+      <id>github</id>
+      <name>Paladins Inn -- DB-UPDATER</name>
+      <url>scm:git:git@github.com:Paladins-Inn/db-updater.git</url>
+    </site>
+    <repository>
+      <id>github</id>
+      <name>GitHub Paladins Inn Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/Paladins-Inn/db-updater</url>
+    </repository>
+  </distributionManagement>
+
   <build>
-    <finalName>db-updater</finalName>
+    <finalName>app</finalName>
 
     <resources>
       <resource>
@@ -166,66 +202,412 @@
       </testResource>
     </testResources>
 
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <version>3.2.7</version>
+          <configuration>
+            <gpgArguments>
+              <arg>--pinentry-mode</arg>
+              <arg>loopback</arg>
+            </gpgArguments>
+          </configuration>
+          <executions>
+            <execution>
+              <id>sign-artifacts</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>sign</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-source-plugin</artifactId>
+          <version>3.3.1</version>
+          <configuration>
+            <skipSource>${skip.source}</skipSource>
+          </configuration>
+          <executions>
+            <execution>
+              <id>attach-sources</id>
+              <phase>package</phase>
+              <goals>
+                <goal>jar-no-fork</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.11.2</version>
+          <configuration>
+            <skip>${skip.javadoc}</skip>
+            <charset>${project.build.sourceEncoding}</charset>
+            <show>public</show>
+            <failOnError>true</failOnError>
+            <detectOfflineLinks>false</detectOfflineLinks>
+            <doclint>all,-missing</doclint>
+            <minmemory>128m</minmemory>
+            <maxmemory>1g</maxmemory>
+          </configuration>
+          <executions>
+            <execution>
+              <id>attach-javadoc</id>
+              <phase>package</phase>
+              <goals>
+                <goal>jar</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.projectlombok</groupId>
+          <artifactId>lombok-maven-plugin</artifactId>
+          <version>1.18.20.0</version>
+          <configuration>
+            <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+            <outputDirectory>${delombok.output}</outputDirectory>
+            <addOutputDirectory>false</addOutputDirectory>
+          </configuration>
+          <executions>
+            <execution>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>delombok</goal>
+              </goals>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.21.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.9.0</version>
+        </plugin>
+
+        <plugin>
+          <groupId>org.owasp</groupId>
+          <artifactId>dependency-check-maven</artifactId>
+          <version>12.1.0</version>
+          <configuration>
+            <skip>${skip.owasp}</skip>
+            <suppressionFiles>
+              <suppressionFile>${main.basedir}/owasp-suppressions.xml</suppressionFile>
+            </suppressionFiles>
+            <failBuildOnCVSS>8</failBuildOnCVSS>
+            <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+            <failOnError>true</failOnError>
+            <nvdDatafeedServerId>nvdApi</nvdDatafeedServerId>
+            <nvdApiServerId>nvdApi</nvdApiServerId>
+            <msbuildAnalyzerEnabled>false</msbuildAnalyzerEnabled>
+            <nodeAnalyzerEnabled>false</nodeAnalyzerEnabled>
+            <pipAnalyzerEnabled>false</pipAnalyzerEnabled>
+            <nugetconfAnalyzerEnabled>false</nugetconfAnalyzerEnabled>
+            <skipSystemScope>true</skipSystemScope>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.12</version>
+          <configuration>
+            <skip>${skip.coverage}</skip>
+            <rules>
+              <permission>
+                <element>BUNDLE</element>
+                <limits>
+                  <limit>
+                    <counter>COMPLEXITY</counter>
+                    <value>COVEREDRATIO</value>
+                    <minimum>0</minimum>
+                  </limit>
+                </limits>
+              </permission>
+            </rules>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.14.0</version>
+          <configuration>
+            <useModulePath>false</useModulePath>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
+            </annotationProcessorPaths>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+          <version>${spring-boot.version}</version>
+          <configuration>
+            <mainClass>de.paladinsinn.dbUpdater.Application</mainClass>
+            <executable>true</executable>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.3.1</version>
+          <configuration>
+            <encoding>${project.build.sourceEncoding}</encoding>
+            <propertiesEncoding>${project.build.sourceEncoding}</propertiesEncoding>
+            <delimiters>
+              <delimiter>@</delimiter>
+            </delimiters>
+            <useDefaultDelimiters>false</useDefaultDelimiters>
+            <nonFilteredFileExtensions>
+              <nonFilteredFileExtension>docx</nonFilteredFileExtension>
+              <nonFilteredFileExtension>xlsx</nonFilteredFileExtension>
+              <nonFilteredFileExtension>zip</nonFilteredFileExtension>
+              <nonFilteredFileExtension>tgz</nonFilteredFileExtension>
+              <nonFilteredFileExtension>png</nonFilteredFileExtension>
+              <nonFilteredFileExtension>jpg</nonFilteredFileExtension>
+              <nonFilteredFileExtension>gpg</nonFilteredFileExtension>
+              <nonFilteredFileExtension>license</nonFilteredFileExtension>
+              <nonFilteredFileExtension>p12</nonFilteredFileExtension>
+            </nonFilteredFileExtensions>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.5.3</version>
+          <configuration>
+            <argLine>@{argLine}</argLine>
+            <useModulePath>false</useModulePath>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
     <plugins>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.14.0</version>
-        <configuration>
-          <useModulePath>false</useModulePath>
-          <annotationProcessorPaths>
-            <path>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-              <version>${lombok.version}</version>
-            </path>
-          </annotationProcessorPaths>
-        </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${spring-boot.version}</version>
-        <configuration>
-          <mainClass>de.paladinsinn.dbUpdater.Application</mainClass>
-          <executable>true</executable>
-        </configuration>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
-        <version>3.3.1</version>
-        <configuration>
-          <encoding>${project.build.sourceEncoding}</encoding>
-          <delimiters>
-            <delimiter>@</delimiter>
-          </delimiters>
-          <useDefaultDelimiters>false</useDefaultDelimiters>
-        </configuration>
       </plugin>
 
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.5.3</version>
-        <configuration>
-          <argLine>@{argLine}</argLine>
-          <useModulePath>false</useModulePath>
-        </configuration>
       </plugin>
 
     </plugins>
   </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-project-info-reports-plugin</artifactId>
+        <version>3.9.0</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>index</report>
+              <report>dependencies</report>
+              <report>licenses</report>
+            </reports>
+          </reportSet>
+          <reportSet>
+            <id>aggregate</id>
+            <inherited>false</inherited>
+            <reports>
+              <report>index</report>
+              <report>dependencies</report>
+              <report>team</report>
+              <report>ci-management</report>
+              <report>issue-management</report>
+              <report>licenses</report>
+              <report>scm</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.8.12</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>report</report>
+            </reports>
+          </reportSet>
+          <reportSet>
+            <id>aggregate</id>
+            <inherited>false</inherited>
+            <reports>
+              <report>report-aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+
+      <plugin>
+        <groupId>org.owasp</groupId>
+        <artifactId>dependency-check-maven</artifactId>
+        <version>12.1.0</version>
+        <configuration>
+          <suppressionFiles>
+            <suppressionFile>${main.basedir}/owasp-suppressions.xml</suppressionFile>
+          </suppressionFiles>
+          <skip>${skip.owasp}</skip>
+          <failBuildOnCVSS>8</failBuildOnCVSS>
+          <nvdApiServerId>nvdApi</nvdApiServerId>
+        </configuration>
+        <reportSets>
+          <reportSet>
+            <inherited>false</inherited>
+            <reports>
+              <report>aggregate</report>
+            </reports>
+          </reportSet>
+        </reportSets>
+      </plugin>
+    </plugins>
+  </reporting>
+
+  <profiles>
+    <profile>
+      <id>release</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+          </plugin>
+
+          <plugin>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok-maven-plugin</artifactId>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>site</id>
+
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok-maven-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-project-info-reports-plugin</artifactId>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>3.5.3</version>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+
+      <reporting>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <reportSets>
+              <reportSet>
+                <reports>
+                  <report>javadoc-no-fork</report>
+                  <report>test-javadoc-no-fork</report>
+                </reports>
+              </reportSet>
+            </reportSets>
+          </plugin>
+        </plugins>
+      </reporting>
+    </profile>
+
+    <profile>
+      <id>github</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>https://repo1.maven.org/maven2/</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
 
 </project>
 
