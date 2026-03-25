@@ -13,7 +13,7 @@ on:
 
 env:
   REGISTRY: quay.io
-  IMAGE_NAME: paladinsinn/rollenspiel-cons
+  IMAGE_NAME: paladinsinn/db-updater
 
 
 jobs:
@@ -109,14 +109,8 @@ jobs:
         spring.datasource.driverClassName=org.h2.Driver
         spring.datasource.username=sa
         spring.datasource.password=sa
-        what3words.api.key=${{ secrets.WHAT3WORDS_API_KEY }}
-        geocoding.api.key=${{ secrets.GEOCODING_API_KEY }}
         EOF
       shell: bash
-    
-    - name: Set an AES256 secret key for testing
-      run: |
-        echo "APP_AES256_KEY=$(openssl rand -base64 32)" >> $GITHUB_ENV
     
     - name: Compile stuff
       id: build-java

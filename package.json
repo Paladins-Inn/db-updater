@@ -1,6 +1,6 @@
 {
-  "name": "rollenspiel-cons",
-  "version": "1.0.0",
+  "name": "db-updater",
+  "version": "0.9.0",
   "scripts":{
     "start": "node index.js"
   },
