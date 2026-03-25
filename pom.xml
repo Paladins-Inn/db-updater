@@ -23,7 +23,7 @@
 
   <groupId>de.paladins-inn</groupId>
   <artifactId>db-updater</artifactId>
-  <version>0.9.0</version>
+  <version>0.9.1</version>
   <packaging>jar</packaging>
 
   <name>${project.groupId}:${project.artifactId}</name>
