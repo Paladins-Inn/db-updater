@@ -1,0 +1,10 @@
+include::partial$config.adoc[]
+.Level 3 Building blocks of {system}
+[cols="<.<4h,<.<8a,<.<4a",options="header",frame="topbot",grid="rows"]
+|===
+| Name | Description | Technology
+
+| [[bb-application,Application]] **Application**
+|
+| Java, Liquibase, Picolo
+|===

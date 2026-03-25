@@ -1,0 +1,4 @@
+:stake_holder-devops: &uparrow;xref:db-updater:arc42:03_system_scope_and_context.adoc#devops[&uparrow;Stakeholder: DevOps Engineer]
+:stake_holder-dev: &uparrow;xref:db-updater:arc42:03_system_scope_and_context.adoc#dev[&uparrow;Stakeholder: Developer]
+:stake_holder-dbadmin: &uparrow;xref:db-updater:arc42:03_system_scope_and_context.adoc#dbadmin[&uparrow;Stakeholder: Database Administrators]
+:stage_holder-governance: &uparrow;xref:db-updater:arc42:03_system_scope_and_context.adoc#governance[&uparrow;Stakeholder: Governance]

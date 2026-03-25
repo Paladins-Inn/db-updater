@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - property:
+      name: db.changelog-Author
+      value: klenkes74
+
+  # Hier die eigenen Migrations-Dateien einbinden, z.B.:
+  # - include:
+  #     file: db/changelog/v1/001-init.yaml
+  # - include:
+  #     file: db/changelog/v1/002-add-table.yaml
+

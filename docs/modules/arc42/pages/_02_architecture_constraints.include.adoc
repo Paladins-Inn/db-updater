@@ -1,0 +1,6 @@
+:ct001: xref:02_architecture_constraints.adoc#CT001[&uparrow;Kubernetes (CT-001)]
+:ct002: xref:02_architecture_constraints.adoc#CT002[&uparrow;Publishing Chain (CT-002)]
+:ct003: xref:02_architecture_constraints.adoc#CT003[&uparrow;Programming Languages (CT-003)]
+:co001: xref:02_architecture_constraints.adoc#CO001[&uparrow;Paladins Inn (CO-001)]
+:co002: xref:02_architecture_constraints.adoc#CO002[&uparrow;Hexagonal Architecture (CO-002)]
+:cp001: xref:02_architecture_constraints.adoc#CP001[&uparrow;Non Profit (CP-001)]

@@ -1,0 +1,13 @@
+= Solution Strategy
+include::partial$config.adoc[]
+
+
+== Modularization
+
+The system needs to stay maintainable and extensible.
+Therefore we use a hexagonal architecture {adr-004}.
+The core domain is separated from the outside world (UI, DB, Messaging, etc.) via ports and adapters.
+This allows to easily exchange parts of the system without affecting the core domain.
+Also testing the core domain is much easier this way.
+
+<<<

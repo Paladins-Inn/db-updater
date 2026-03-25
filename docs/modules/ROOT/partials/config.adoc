@@ -1,0 +1,19 @@
+:heading-font-color: #ff0000
+:sectnums:
+:sectnumlevels: 5
+:sectlinks:
+:sectids:
+:sectanchors:
+:chapter-label: Chapter
+:icons: font
+:partnums:
+include::partial$includes/glossary.adoc[]
+include::partial$includes/bibliography.adoc[]
+:system: db-updater
+include::arc42:_02_architecture_constraints.include.adoc[]
+include::arc42:_03_stakeholder.include.adoc[]
+include::arc42:09_architecture_decisions/_include.adoc[]
+include::arc42:_10_quality_requirements.include.adoc[]
+include::arc42:_11_technical_risks.include.adoc[]
+include::ROOT:partial$includes/bibliography.adoc[]
+include::ROOT:partial$includes/glossary.adoc[]

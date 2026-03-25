@@ -1,0 +1,6 @@
+= Arc42 System Architecture
+include::partial$config.adoc[]
+
+This is the technical architecture of the {system}.
+
+include::partial$whitebox-overall-system.adoc[]

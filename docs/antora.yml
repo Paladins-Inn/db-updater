@@ -1,0 +1,8 @@
+---
+name: db-updater
+version: dev
+title: Database Schema Updater
+nav:
+  - modules/manual/pages/_nav.adoc
+  - modules/arc42/pages/_nav.adoc
+  - modules/ROOT/pages/_nav.adoc

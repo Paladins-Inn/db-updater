@@ -1,0 +1,49 @@
+= Introduction and Goals
+include::partial$config.adoc[]
+
+
+== Introduction
+The software is a generic database update utility based on Liquibase.
+It is used to update the database schema and data of the convention management system. It is designed to be flexible and extensible, allowing for easy integration with different database systems and deployment environments.
+
+== Requirements Overview
+
+* {fs01}
+* {fs02}
+* {us01}
+* {us02}
+* {co01}
+
+
+== Quality Goals
+
+* {re01}
+* {mt01}
+
+<<<
+== Stakeholders
+
+[cols="<.<6,<.<6,<.<8a",options="header",frame="topbot",grid="rows"]
+|===
+|Role/Name|Contact|Expectations
+
+|[[devops,DevOps Engineers]]DevOps Engineers
+|Roland T. Lichti
+|Responsible for maintaining the software and the database.
+Main expectation is that the software is easy to maintain and can be easily integrated into the existing infrastructure.
+
+|[[dev,Developers]]Developers
+|Roland T. Lichti
+|Want to have a clear database update strategy and a well defined process for updating the database schema and data.
+Need to run the database update utility locally for testing and development purposes.
+
+|[[dbadmin,Database Admins]]Database Administrators
+|Roland T. Lichti
+|Responsible for the database and its performance.
+May be the same person as the <<devops>>.
+
+|[[governance,Governance]]Governance
+|Roland T. Lichti
+|Responsible for the overall project and its success.
+
+|===

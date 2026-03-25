@@ -1,0 +1,5 @@
+**** xref:db-updater:arc42:09_architecture_decisions/001_using-adrs.adoc[]
+**** xref:db-updater:arc42:09_architecture_decisions/002_spring-boot.adoc[]
+**** xref:db-updater:arc42:09_architecture_decisions/003_sql-data-store.adoc[]
+**** xref:db-updater:arc42:09_architecture_decisions/004_hexagonal-architecture.adoc[]
+**** xref:db-updater:arc42:09_architecture_decisions/005_encryption-for-database-fields.adoc[]

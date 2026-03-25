@@ -1,0 +1,41 @@
+= Deployment View
+include::partial$config.adoc[]
+
+[plantuml, deployment-view]
+----
+@startuml deployment-view
+
+left to right direction
+
+component "Service" <<Helm Deployment>> as deployment {
+  component "Database Initialization" <<Job>> as dbinit {
+      [Database Updater] <<Init-Container>> as dbupdater
+  }
+
+  component "Service" <<Pod>> as pod {
+    [Application] <<Container>> as oci
+  }
+
+  database "database\n\nCNPG Cluster" <<Pod>> as data
+  component "database datastore" <<PVC>> as pvc
+
+  oci --> data : Postgresql\n(Port 5432)
+  oci ..> data : DDL verfication\nuses data
+  dbupdater --> data : Postgresql\n(Port 5432)
+  dbupdater ..> data : updates Schema
+
+  data .left. pvc : uses
+}
+
+@enduml
+----
+
+
+== Quality and/or Performance Features
+
+* {fs01}
+* {fs02}
+* {us01}
+* {us02}
+* {co01}
+

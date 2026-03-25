@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: db-updater
+    description: Liquibase Datenbankmigrationen CLI
+    version: "@project.version@"
+
+  main:
+    banner-mode: log
+    web-application-type: none
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    default-schema: ${LIQUIBASE_DEFAULT_SCHEMA:public}
+    contexts: ${LIQUIBASE_CONTEXTS:}
+    label-filter: ${LIQUIBASE_LABELS:}
+    enabled: false   # wird erst über den CLI-Flag -u aktiviert
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/db}
+    username: ${SPRING_DATASOURCE_USERNAME:}
+    password: ${SPRING_DATASOURCE_PASSWORD:}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 2
+      minimum-idle: 1
+      connection-timeout: 30000
+      idle-timeout: 60000
+      max-lifetime: 120000
+
+logging:
+  level:
+    root: WARN
+    de.paladinsinn: INFO
+    liquibase: INFO
+    org.springframework.boot.autoconfigure.liquibase: INFO
+

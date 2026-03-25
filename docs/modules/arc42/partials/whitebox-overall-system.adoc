@@ -1,0 +1,26 @@
+include::partial$config.adoc[]
+.Level 1 Overview of the {system} system.
+[plantuml, whitebox-scs]
+----
+@startuml whitebox-scs
+
+component "db-updater OCI Image" <<docker>> as image {
+  database "Changelog\nxml, yaml file(s)" as changelog
+
+  component "db-updater" <<spring-boot>> as service {
+    [Core] <<Java>> as core
+    [picolo\nCommand Line Interface] <<picolo>> as picolo
+    [Liquibase\nDatabase Management] <<Liquibase>> as liquibase
+
+    database "database" <<Postgres>> as data
+  }
+}
+
+core --> liquibase : uses
+core --> picolo : uses
+
+liquibase .left.> changelog : reads
+liquibase --> data : updates
+
+@enduml
+----

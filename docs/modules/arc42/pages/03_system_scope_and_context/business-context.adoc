@@ -1,0 +1,38 @@
+= Business Context
+
+include::partial$config.adoc[]
+
+.The business context of {system}.
+[plantuml,business-context,svg]
+----
+@startuml
+skinparam actorStyle awesome
+
+together {
+  :DevOps Engineer: as devops << Human >>
+
+  [db-updater] <<Spring Boot>> as dbupdater
+}
+
+together {
+  :Developer: as dev << Human >>
+
+  [service] <<SCS>> as service
+  (Changelog\nxml, yaml) as changelog
+}
+
+
+database "database" <<Postgres>> as database
+
+dev ..> service : provides
+dev ..> changelog : provides
+
+devops .right.> dbupdater : provides
+
+dbupdater --> changelog : reads
+dbupdater --> database : updates
+
+service --> database : uses
+
+@enduml
+----

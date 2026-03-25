@@ -1,0 +1,15 @@
+= Runtime View
+include::partial$config.adoc[]
+
+The software is provided as OCI Image.
+The image contains the spring boot application.
+It expects the changelog file(s) to be available as `/app/data/changelog.<yaml|xml>`.
+
+The changelog may include other files and is accountable and responsible for providing the correct hierarchy of files.
+
+This base container will be used to create a container containing all necessary changelog files.
+
+The resulting container will be executed as job during installation of a new version.
+It is a full package of the needed db-updater software and the updates to be applied to the database.
+
+<<<

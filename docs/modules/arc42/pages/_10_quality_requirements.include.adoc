@@ -1,0 +1,7 @@
+:fs01: xref:10_quality_requirements.adoc#FS01[&uparrow;Update Database Schema and Data (FS01)]
+:fs02: xref:10_quality_requirements.adoc#FS02[&uparrow;Verify Database Schema (FS02)]
+:co01: xref:10_quality_requirements.adoc#CO01[&uparrow;Compatible as init-container within k8s (CO01)]
+:us01: xref:10_quality_requirements.adoc#US01[&uparrow;Take a file parameter as changelog file (US01)]
+:us02: xref:10_quality_requirements.adoc#US02[&uparrow;Take a ZIP file as changelog file (US02)]
+:re01: xref:10_quality_requirements.adoc#RE01[&uparrow;Working Hours 24/7 (RE01)]
+:mt01: xref:10_quality_requirements.adoc#MT01[&uparrow;Small Team (MT01)]

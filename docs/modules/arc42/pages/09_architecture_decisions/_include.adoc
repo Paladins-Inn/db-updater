@@ -1,0 +1,5 @@
+:adr-001: xref:db-updater:arc42:09_architecture_decisions/001_using-adrs.adoc[&uparrow;ADRs (ADR-001)]
+:adr-002: xref:db-updater:arc42:09_architecture_decisions/002_spring-boot.adoc[&uparrow;Spring Boot (ADR-002)]
+:adr-003: xref:db-updater:arc42:09_architecture_decisions/003_sql-data-store.adoc[&uparrow;SQL Data Store (ADR-003)]
+:adr-004: xref:db-updater:arc42:09_architecture_decisions/004_hexagonal-architecture.adoc[&uparrow;Hexagonal Architecture (ADR-004)]
+:adr-005: xref:db-updater:arc42:09_architecture_decisions/005_encryption-for-database-fields.adoc[&uparrow;Encryption for database Fields (ADR-005)]

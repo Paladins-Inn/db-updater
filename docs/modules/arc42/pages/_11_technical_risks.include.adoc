@@ -1,0 +1,5 @@
+:tr001: xref:11_technical_risks.adoc#TR001[&uparrow;Small Team (TR-001)]
+:tr002: xref:11_technical_risks.adoc#TR002[&uparrow;Liquibase is third-party controlled (TR-002)]
+:tr003: xref:11_technical_risks.adoc#TR003[&uparrow;TR-003]
+:tr004: xref:11_technical_risks.adoc#TR004[&uparrow;TR-004]
+:tr005: xref:11_technical_risks.adoc#TR005[&uparrow;TR-005]

@@ -1,0 +1,3 @@
+// asciidoc settings for EN (English)
+// ==================================
+include::ROOT:partial$config.adoc[]
