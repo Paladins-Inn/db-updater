@@ -371,7 +371,6 @@
           <version>${spring-boot.version}</version>
           <configuration>
             <mainClass>de.paladinsinn.dbUpdater.Application</mainClass>
-            <executable>true</executable>
           </configuration>
           <executions>
             <execution>
