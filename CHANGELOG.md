@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.11.0](https://github.com/Paladins-Inn/db-updater/compare/v0.10.1...v0.11.0) (2026-03-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* **release-pipeline:** Final steps and release of 1.0.0
+
+* **release-pipeline:** Final steps and release of 1.0.0 ([f1cc37b](https://github.com/Paladins-Inn/db-updater/commit/f1cc37be99eef05418af073059839be6b544802a))
+
 ## [0.10.1](https://github.com/Paladins-Inn/db-updater/compare/v0.10.0...v0.10.1) (2026-03-26)
 
 ## [0.10.0](https://github.com/Paladins-Inn/db-updater/compare/v0.9.1...v0.10.0) (2026-03-26)
