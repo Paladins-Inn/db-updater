@@ -1,4 +1,15 @@
+= Manual DB-UPDATER
 include::partial$config.adoc[]
-= Manual {system}
 Roland T. Lichti <klenkes74@paladins-inn.de>
 :page-aliases: ROOT:index.adoc
+
+:note-caption: Abstract
+[NOTE]
+====
+include::arc42:partial$abstract.adoc[]
+====
+:note-caption: Note
+
+include::_nav.adoc[]
+
+include::arc42:_nav.adoc[]

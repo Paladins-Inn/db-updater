@@ -1,0 +1,2 @@
+The software is a generic database update utility based on Liquibase.
+It is used to update the database schema and data of the convention management system. It is designed to be flexible and extensible, allowing for easy integration with different database systems and deployment environments.
