@@ -10,7 +10,17 @@ name: Release Version
 
 on:
   workflow_dispatch:
-
+    inputs:
+      release_as:
+        description: "Version bump (auto|patch|minor|major)"
+        type: choice
+        options:
+          - auto
+          - patch
+          - minor
+          - major
+        default: auto
+        required: false
 env:
   REGISTRY: quay.io
   IMAGE_NAME: paladinsinn/${{ github.event.repository.name }}
@@ -57,12 +67,18 @@ jobs:
     - name: Generate Changelog and next Version
       run: |
         npm install
-        npx --yes commit-and-tag-version --skip.commit --skip.tag
+        RELEASE_AS="${{ github.event.inputs.release_as || 'auto' }}"
+        if [ "$RELEASE_AS" = "auto" ]; then
+          npx --yes commit-and-tag-version --skip.commit --skip.tag
+        else
+          npx --yes commit-and-tag-version --release-as "$RELEASE_AS" --skip.commit --skip.tag
+        fi
+    
         VERSION=$(node -p "require('./package.json').version")
-        echo "RELEASE_VERSION=$VERSION" >> $GITHUB_ENV
-        # Get just the latest changelog part for the GitHub Release
+        echo "RELEASE_VERSION=$VERSION" >> "$GITHUB_ENV"
+    
         npx --yes conventional-changelog-cli -p angular -r 2 > release-notes.md
-
+    
     - name: Set project.version in pom.xml
       run: |
         mvn versions:set -U --batch-mode --no-transfer-progress -DnewVersion=${{ env.RELEASE_VERSION }} -DgenerateBackupPoms=false
