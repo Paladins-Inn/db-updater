@@ -11,15 +11,14 @@ LABEL org.opencontainers.image.title="db-updater" \
 
 COPY --chown=1000:1000 --chmod=0555 \
   ./target/app.jar \
-  ./src/main/resources/db.changelog/* \
+  ./src/main/resources/db/changelog/db.changelog-master.yaml \
   ./README.md ./CONTRIBUTING.md ./LICENSE ./CODE_OF_CONDUCT.md ./SECURITY.md \
   ./CHANGELOG.md \
   ./KES*.pdf \
   /
 
 ENV TZ=UTC \
-  LANG=C.UTF-8 \
-  JAVA_TOOL_OPTIONS="-XX:+ExitOnOutOfMemoryError -XX:MaxRAMPercentage=75.0 -Dfile.encoding=UTF-8 -Duser.timezone=UTC"
+  LANG=C.UTF-8
 
 USER 1000
-ENTRYPOINT ["java", "-jar", "/app.jar", "--update-database"]
+ENTRYPOINT ["java", "-XX:+ExitOnOutOfMemoryError", "-XX:MaxRAMPercentage=75.0", "-Dfile.encoding=UTF-8", "-Duser.timezone=UTC", "-jar", "/app.jar", "--update-database"]

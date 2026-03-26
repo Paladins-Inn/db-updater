@@ -17,6 +17,7 @@
 
 package de.paladinsinn.dbUpdater;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -64,6 +65,7 @@ import picocli.CommandLine.Option;
                 "  LIQUIBASE_LABELS            Liquibase-Labels (optional)"
         }
 )
+@Slf4j
 public class Application implements Runnable {
 
     @Option(
@@ -77,7 +79,7 @@ public class Application implements Runnable {
      *
      * @param args Kommandozeilenargumente
      */
-    public static void main(final String[] args) {
+    static void main(final String[] args) {
         int exitCode = new CommandLine(new Application()).execute(args);
         System.exit(exitCode);
     }
@@ -94,14 +96,15 @@ public class Application implements Runnable {
     @Override
     public void run() {
         if (updateDatabase) {
-            try (var ctx = new SpringApplicationBuilder(Application.class)
+            try (
+                @SuppressWarnings("unused") var ctx = new SpringApplicationBuilder(Application.class)
                     .web(WebApplicationType.NONE)
                     .properties("spring.liquibase.enabled=true")
                     .run()) {
-                System.out.println("✓ Datenbankupdate erfolgreich abgeschlossen.");
+                log.info("Datenbankupdate erfolgreich abgeschlossen.");
             }
         } else {
-            new CommandLine(this).usage(System.out);
+            new CommandLine(this).usage(System.err);
         }
     }
 }
