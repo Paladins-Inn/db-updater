@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.10.0](https://github.com/Paladins-Inn/db-updater/compare/v0.9.1...v0.10.0) (2026-03-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* Build working oci image based on eclipse-temurin:25-jre-alpine
+
+### Features
+
+* Build working oci image based on eclipse-temurin:25-jre-alpine ([e32deed](https://github.com/Paladins-Inn/db-updater/commit/e32deed6ca4b796f740fd4048dc04f39f7702c01))
+
+
+### Bug Fixes
+
+* Fixed the transfer for the resources directory ([d52b546](https://github.com/Paladins-Inn/db-updater/commit/d52b546d5b83b1bc369dcd693e3b4c4f4b6c43df))
+* Fixed the transfer for the resources directory [skip-ci] ([fdbf15b](https://github.com/Paladins-Inn/db-updater/commit/fdbf15bfc42c349c63bf895aead5ac3782d039d0))
+
 ## [0.9.1](https://github.com/Paladins-Inn/db-updater/compare/v0.9.0...v0.9.1) (2026-03-25)
 
 
