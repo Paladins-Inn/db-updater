@@ -1,0 +1,4 @@
+include:::partial$config.adoc[]
+* Appendix
+** xref::glossary.adoc[]
+** xref::bibliography.adoc[]

@@ -1,4 +1,4 @@
-= Introduction and Goals
+= Chapter 1. Introduction and Goals
 include::partial$config.adoc[]
 
 

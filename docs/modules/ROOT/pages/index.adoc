@@ -1,7 +1,6 @@
 = Manual DB-UPDATER
 include::partial$config.adoc[]
 Roland T. Lichti <klenkes74@paladins-inn.de>
-:page-aliases: ROOT:index.adoc
 
 :note-caption: Abstract
 [NOTE]
@@ -10,6 +9,8 @@ include::arc42:partial$abstract.adoc[]
 ====
 :note-caption: Note
 
-include::_nav.adoc[]
+include::_nav.main.adoc[]
 
 include::arc42:_nav.adoc[]
+
+include::_nav.appendix.adoc[]

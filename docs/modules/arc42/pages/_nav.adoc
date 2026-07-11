@@ -1,17 +1,17 @@
 include::partial$config.adoc[]
 * xref:arc42:index.adoc[]
-** Context
+** Book 1 - Context
 *** xref:arc42:01_introduction_and_goals.adoc[]
 *** xref:arc42:02_architecture_constraints.adoc[]
-*** System scope and context
+*** Chapter 3. System scope and context
 **** xref:arc42:03_system_scope_and_context/business-context.adoc[]
 **** xref:arc42:03_system_scope_and_context/technical-context.adoc[]
-** Systems
+** Book 2 - Systems
 *** xref:arc42:04_solution_strategy.adoc[]
 *** xref:arc42:05_building_block_view/index.adoc[]
-** xref:arc42:06_runtime_view.adoc[]
-** xref:arc42:07_deployment_view.adoc[]
-** Appendix
+*** xref:arc42:06_runtime_view.adoc[]
+*** xref:arc42:07_deployment_view.adoc[]
+** Book 3 - Appendix
 *** xref:arc42:08_concepts/index.adoc[]
 **** xref:arc42:08_concepts/hexagonal-architecture.adoc[]
 **** xref:arc42:08_concepts/data-protection.adoc[]

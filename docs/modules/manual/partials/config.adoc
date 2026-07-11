@@ -1,4 +1,0 @@
-// asciidoc settings for EN (English)
-// ==================================
-include::ROOT:partial$config.adoc[]
-system: pass:[DB-UPDATER]

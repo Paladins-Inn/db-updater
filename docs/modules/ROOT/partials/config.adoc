@@ -9,7 +9,7 @@
 :partnums:
 include::partial$includes/glossary.adoc[]
 include::partial$includes/bibliography.adoc[]
-:system: db-updater
+:system: pass:[DB-UPDATER]
 include::arc42:_02_architecture_constraints.include.adoc[]
 include::arc42:_03_stakeholder.include.adoc[]
 include::arc42:09_architecture_decisions/_include.adoc[]

@@ -1,4 +1,4 @@
-= Building Block View
+= Chapter 5. Building Block View
 include::partial$config.adoc[]
 
 

@@ -1,4 +1,4 @@
-= Cross Cutting Concepts
+= Chapter 8. Cross Cutting Concepts
 
 include::partial$config.adoc[]
 

@@ -1,4 +1,4 @@
-= Solution Strategy
+= Chapter 4. Solution Strategy
 include::partial$config.adoc[]
 
 

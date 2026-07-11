@@ -1,4 +1,4 @@
-= Architecture Decisions
+= Chapter 9. Architecture Decisions
 include::partial$config.adoc[]
 
 This chapter lists the current architecture decisions (ADRs) of the {system} project.

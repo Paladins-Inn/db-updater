@@ -1,4 +1,4 @@
-= Architecture Constraints
+= Chapter 2. Architecture Constraints
 include::partial$config.adoc[]
 
 .Technical Constraints

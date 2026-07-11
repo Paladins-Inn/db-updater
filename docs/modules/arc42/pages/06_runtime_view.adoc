@@ -1,4 +1,4 @@
-= Runtime View
+= Chapter 6. Runtime View
 include::partial$config.adoc[]
 
 The software is provided as OCI Image.
